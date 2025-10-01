@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Pasta al Tons Quest — Retro Arcade</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
   <style>
     body{margin:0; font-family:'VT323', monospace; background:#0f0520; color:#f6f2e8; display:flex; align-items:center; justify-content:center; min-height:100vh; padding:20px;}
@@ -18,6 +19,23 @@
     .recipe-media{flex:0 0 360px}
     .recipe-info{text-align:left; flex:1}
     .inventory div,.levels div{margin:6px 0; font-size:18px}
+
+    /* Titoli neon/arcade */
+    @keyframes flicker {
+      0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow:
+          0 0 4px #fff,
+          0 0 10px #ffdf4d,
+          0 0 20px #ffdf4d,
+          0 0 40px #ffdf4d;
+        color: #ffdf4d;
+      }
+      20%, 24%, 55% {
+        text-shadow: none;
+        color: #f6f2e8;
+      }
+    }
+    h1.arcade, h2.arcade { animation: flicker 2s infinite alternate; }
 
     @media (max-width:1024px){
       body{padding:12px}
@@ -39,58 +57,58 @@
 
 <!-- Screen 1: Auguri -->
 <div id="screen1" class="screen active">
-  <h1>Tanti auguri, amorins!</h1>
+  <h1 class="arcade">Tanti auguri, amorins!</h1>
   <img class="placeholder tall" src="images/placeholder.jpg" alt="Foto segnaposto: auguri">
   <div>Ma tu scali alla Bloc?</div>
-  <button onclick="wrongBloc()">Sì</button>
-  <button onclick="goTo('screen2')">No</button>
+  <button onclick="playSound(); wrongBloc()">Sì</button>
+  <button onclick="playSound(); goTo('screen2')">No</button>
 </div>
 
 <!-- Screen 2: Where everything began -->
 <div id="screen2" class="screen">
-  <h2>Where everything began...</h2>
+  <h2 class="arcade">Where everything began...</h2>
   <img class="placeholder" src="images/placeholder2.jpg" alt="Foto segnaposto: noi due">
   <div>Ti vuoi mettere con me?</div>
-  <button onclick="wrongMetterti()">No</button>
-  <button onclick="goTo('screen3')">Sì</button>
+  <button onclick="playSound(); wrongMetterti()">No</button>
+  <button onclick="playSound(); goTo('screen3')">Sì</button>
 </div>
 
 <!-- Screen 3: Cosa facciamo oggi -->
 <div id="screen3" class="screen">
-  <h2>Amorins, cosa facciamo oggi?</h2>
+  <h2 class="arcade">Amorins, cosa facciamo oggi?</h2>
   <img class="placeholder tall" src="images/whatsapp-arcade.jpg" alt="Screenshot WhatsApp arcade">
   <div>
-    <button onclick="goTo('screen3a')">Trekking?</button>
-    <button onclick="goTo('screen3b')">Guardiamo un anime?</button>
-    <button onclick="goTo('screen3c')">Cuciniamo insieme?</button>
+    <button onclick="playSound(); goTo('screen3a')">Trekking?</button>
+    <button onclick="playSound(); goTo('screen3b')">Guardiamo un anime?</button>
+    <button onclick="playSound(); goTo('screen3c')">Cuciniamo insieme?</button>
   </div>
 </div>
 
 <!-- Screen 3A: Trekking -->
 <div id="screen3a" class="screen">
-  <h2>Trekking</h2>
+  <h2 class="arcade">Trekking</h2>
   <img class="placeholder tall" src="images/placeholder5.jpg" alt="Foto trekking">
-  <div><button onclick="goTo('screen3')">Bello il trekking, ma ora torniamo a casa</button></div>
+  <div><button onclick="playSound(); goTo('screen3')">Bello il trekking, ma ora torniamo a casa</button></div>
 </div>
 
 <!-- Screen 3B: Anime -->
 <div id="screen3b" class="screen">
-  <h2>Guardiamo un anime?</h2>
+  <h2 class="arcade">Guardiamo un anime?</h2>
   <img class="placeholder" src="images/placeholder6.jpg" alt="Foto anime">
   <p>Non ci sono più episodi di Sakamoto Days. Andiamo a consolarci con qualcosa di buono per cena.</p>
-  <div><button onclick="goTo('screen3')">Torna indietro</button></div>
+  <div><button onclick="playSound(); goTo('screen3')">Torna indietro</button></div>
 </div>
 
 <!-- Screen 3C: Bar Chiara -->
 <div id="screen3c" class="screen">
-  <h2>Bar Chiara</h2>
+  <h2 class="arcade">Bar Chiara</h2>
   <img class="placeholder tall" src="images/placeholder7.jpg" alt="Foto Bar Chiara">
-  <div><button onclick="goTo('screen4')">Pasta al tons, certaments!</button></div>
+  <div><button onclick="playSound(); goTo('screen4')">Pasta al tons, certaments!</button></div>
 </div>
 
 <!-- Screen 4: Ricetta -->
 <div id="screen4" class="screen">
-  <h2>Congratulazioni!</h2>
+  <h2 class="arcade">Congratulazioni!</h2>
   <p>Scegliendo sì ti sei assicurato una fornitura a vita di <strong>Pasta al Tons</strong>.</p>
   <div class="recipe-wrap">
     <div class="recipe-media">
@@ -118,19 +136,22 @@
     </div>
   </div>
   <div style="margin-top:20px;">
-    Clicca <button onclick="goTo('screen5')">qui</button> se pensi che Chiara faccia la migliore pasta al tons di sempre (e non solo).
+    Clicca <button onclick="playSound(); goTo('screen5')">qui</button> se pensi che Chiara faccia la migliore pasta al tons di sempre (e non solo).
   </div>
 </div>
 
 <!-- Screen 5: Finale -->
 <div id="screen5" class="screen">
-  <h2>Ti amo più degli arrosticini, amore.</h2>
+  <h2 class="arcade">Ti amo più degli arrosticini, amore.</h2>
   <p>Buon compleanno dalla tua Signorins ❤️</p>
   <img class="placeholder" src="images/placeholder4.jpg" alt="Foto finale arrosticini love">
-  <button onclick="goTo('screen1')">Insert Coin to Restart</button>
+  <button onclick="playSound(); goTo('screen1')">Insert Coin to Restart</button>
 </div>
 
 <script>
+  const clickSound = new Audio('images/click.mp3');
+  function playSound(){ clickSound.play(); }
+
   function goTo(id){
     document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
